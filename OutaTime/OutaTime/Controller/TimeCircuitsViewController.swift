@@ -64,7 +64,7 @@ class TimeCircuitsViewController: UIViewController {
     
     
     func reset() {
-        timer!.invalidate()
+        timer?.invalidate()
         timer = nil
     }
     
@@ -79,11 +79,23 @@ class TimeCircuitsViewController: UIViewController {
             currentSpeed = 0
             speedLabel.text = "\(String(describing: currentSpeed)) MPH"
             reset()
+            showAlert()
 
             //Create an alert
         }
     }
     
+    func showAlert()  {
+        
+        if let currenTime = presentLabel.text {
+        
+        let alert = UIAlertController(title: "Time Travel Successful", message: "You're new date is \(currenTime).", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
     
      // MARK: - Navigation
 
